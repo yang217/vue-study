@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <tk :msg='msg'></tk>
+
+        <div>
+     <script type="text/x-templent" id="tds">
+  
+    <div>
+        <input type="text" v-on:blur="alertMsg" value="弹框" v-model='msg'>
+    </div>
+
+     </script>
+     <script>
+    var tkTmp={
+          template:'#tds',
+          props:['msg'],
+          methods:{
+              alertMsg:function(){
+                  alert(this.msg)
+              }
+          }
+      };
+     new Vue({
+         el:"#box",
+         data:{
+             msg:''
+         },
+         components:{
+             'tk':tkTmp
+         }
+     })
+     </script>
+    </body>
+</html>

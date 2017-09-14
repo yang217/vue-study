@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js">
+            
+        </script>
+    </head>
+    <body>
+     <div id="box">
+         <tk></tk>
+         <pop></pop>
+     </div>
+     <script type="text/x-templent" id="tmp">
+         <input type="buttom" name="" value="点击" @click='alertMsg'>
+     </script>
+     <script>
+      var vm=new Vue();
+      var tkp={
+       template:'#tmp',
+       methods:{
+           alertMsg:function(){
+               vm.$emit('pass','lall','ddd')
+           }
+       }
+      }
+     var poptpl={
+         template:'<h1>123 333</h1>',
+         mounted:function(){
+             vm.$on('pass',function(arg1,arg2){
+                 console.log(arg1)
+                 console.log(arg2);
+             })
+         }
+     }
+     new Vue({
+
+          el:'#box',
+          components:{
+              'tk':tkp,
+              'pop':poptpl
+          }
+      
+     })
+     </script>
+    </body>
+</html>

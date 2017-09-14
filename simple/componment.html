@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+
+   <div id="app">
+
+<my-componment></my-componment>
+<my-componment1></my-componment1>
+<table>
+    <th is="my-row"></th>
+<my-row></my-row>
+</table>
+
+<simple-counter></simple-counter>
+<simple-counter></simple-counter>
+<simple-counter></simple-counter>
+<input type="" name="" value="" v-model="lall">
+<child v-bind:mess="lall"></child>
+   </div>
+    <script>
+        // 先注册组件后实例化
+        //  Vue.component("my-componment",{
+        //       template:"<h1>我的第一个组件</h1>"
+        //   })
+      Vue.component('child',{
+          props:['mess'],
+          template:'<h1>{{mess}}</h1>'
+      })
+       Vue.component('simple-counter',{
+           template:"<button @click='counter+=1'>{{counter}}</button>",
+           data:function(){
+               
+               return {counter:0}
+           }
+       })
+        Vue.component("my-row",{
+            template:"<th>hello</th>"
+        })
+        var child1={
+            template:"<h1>我的第一个组件</h1>"
+        }
+          var child2={
+            template:"<h1>局部注册</h1>"
+        }
+
+          new Vue({
+              el:'#app',
+              data:{
+                  lall:'',
+              },
+              components:{
+                  "my-componment":child1,
+                   "my-componment1":child2,
+              }
+          });
+         
+    </script>
+    </body>
+</html>

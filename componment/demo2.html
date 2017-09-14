@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+ <div id="app">
+ <div slot='header'><h2></h2></div>
+ <div slot='footer'><h2></h2></div>
+<my-componment><h1>杨豪<h1></my-componment>
+<p>第二个</p>
+
+<my-componment></my-componment>
+ </div>
+ <template id="mycomponment">
+   <div class="main">
+    <h1>{{msg}}</h1>
+     <slot>如果没有分发内容，则显示slot中的内容</slot>
+     <slot name="header">header<slot>
+      <slot name='footer'>footer<slot>
+   </div>
+
+ </template>
+<script type="text/javascript">
+  new Vue({
+   el:'#app',
+  components:{
+  	'my-componment':{
+  		 template:'#mycomponment',
+     data:function(){
+      return {msg:'杨'}
+     }
+   }
+  	}
+    
+ })
+  // 第一个组件分发了内容
+</script>
+ 
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+    <div id="app">
+           <h1 class="lal" v-bind:class="classObject">{{myname}}</h1>
+           <h2 v-bind:class="[aaa,bbb]"></h2>
+           <h3 v-bind:style="styleobj">{{aaa}}</h3>
+           <h4 :style="{display:['-webkit-box','flex']}">11111</h4>
+           <h1 v-if="Math.random()>0.5">
+               AAAA
+           </h1>
+           <label for="" v-if="type==='usename'">
+               <input type="text" placeholder="usename" key="usename-input">
+           </label>
+            <label for="" v-else>
+               <input type="text" placeholder="email">
+           </label>
+           <h1 v-else>
+               BBBB
+               </h1>  
+               <div>
+                <p v-for="(item, index) in items"> {{type}}-{{index}}-{{item.price}}</p>
+                  
+                </div>
+               
+                <ul>
+  <template v-for="item in items">
+    <li>{{ item.price }}</li>
+    <li class="divider"></li>
+  </template>  
+                </ul>
+                   <ul>
+            <li v-for="(value,key,index) in styleobj">{{key}}=={{value}}=={{index}}</li>
+        </ul> 
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                myname:"杨豪",
+                // classObject:{
+                //     active:"true",
+                //     pop:'true,'
+                // }
+                isactive:true,
+                error:null,
+                aaa:"up",
+                bbb:"down",
+                type:"usename",
+                styleobj:{
+                    color:'green',
+                    background:'red',
+                },
+                items:[
+                    {price:'100'},
+                    {price:'200'}
+                ]
+                
+            },
+            computed:{
+                classObject:function(){
+                    return {
+                         active:this.isactive&&!this.error,
+                        "text-danger":this.error&&this.error==="fatal"
+                    }
+                }
+            }
+        })
+    
+  
+    </script>
+    </body>
+</html>

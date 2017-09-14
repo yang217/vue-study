@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <style>
+        .box{
+            margin: 10px;
+            width: 150px;
+            border: 1px solid #ccc;
+        }
+        .box-header, .box-footer{
+            height: 30px;
+            background: sandybrown;
+        }
+        .box-body{
+            min-height: 100px;
+        }
+    </style>
+<body>
+    <div class="exp">
+        <box>
+            <h2 slot="title">Slot内容分发<h2>
+            <p>为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 内容分发 (或 “transclusion” 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API，参照了当前 Web 组件规范草案，使用特殊的 <slot> 元素作为原始内容的插槽。</p>
+            <p slot="foot">分发完成</p>
+        </box>
+    </div>
+
+    <script type="text/x-template" id="tmp">
+        <div class="box">
+            <div class="box-header"><slot name="title"></slot></div>
+            <div class="box-body">
+                <slot></slot>
+            </div>
+            <div class="box-footer"><slot name="foot"></slot>
+            </div>
+        </div>
+    </script>
+    <script>
+        var box={
+            template:"#tmp",
+        }
+
+        new Vue({
+            el:'.exp',
+            components:{
+                "bilibili":box
+            }
+        })
+    </script>
+</body>
+    </body>
+</html>

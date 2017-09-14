@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+<!--.stop
+.prevent
+.capture
+.self
+.once
+修饰符
+-->
+  <div id="example">{{message}}  <example></example></div>
+
+<!--优先取value的值-->
+  
+    <script>
+  Vue.component('example',{
+      template:'<span @click="update">{{messages}}</span>',
+      data:function(){
+          return {messages:"原数据"}
+      },
+      methods:{
+          update:function(){
+              this.messages="新数据";
+              console.log(this.$el.textContent);
+              this.$nextTick(function(){
+                  console.log(this.$el.textContent); 
+              })
+
+          }
+      }
+  })   
+var vm = new Vue({
+  el: '#example',
+  data: {
+    message: '123'
+  }
+})
+vm.message = 'new message' // 更改数据
+vm.$el.textContent === 'new message' // false
+Vue.nextTick(function () {
+ console.log( vm.$el.textContent)
+  vm.$el.textContent === 'new message' // true
+})
+    </script>
+    </body>
+</html>

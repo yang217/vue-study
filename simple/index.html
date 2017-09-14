@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"> </script>
+    </head>
+    <body>
+    <div id="app" @click="show">
+        {{a+1}}
+        <input type="" name="" value="" v-bind:disabled="true">
+        <h1 v-if='flag' >hello</h1>
+        <a v-bind:href="url">百度一下</a>
+        <h2>{{sh}}</h2>
+        <h2>{{resevers}}</h2>
+        <h1>{{now}}</h1>
+        <h1>{{fullname}}</h1>
+        <!--<form action="" v-on:submit.prevent="onsubmit">
+         
+            <input type="submit">
+        </form>-->
+    </div>
+    <script>
+    //    var url="http://www.baidu.com";
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                a:'123',
+                aaa:'222',
+                flag:false,
+                url:"http://www.baidu.com",
+                sh:'上海',
+                firstname:'yang',
+                lastname:'hao',
+                fullname:'yang'
+
+            },
+            methods:{
+               show:function(){
+                   if(this.flag==false){
+ return this.flag=true;
+                   }else{
+                       return this.flag=false;
+                   }
+                  
+               },
+           
+            },
+            created:function(){
+                console.log(this.a)
+            },
+            computed:{
+                resevers:function(){
+                  return  this.sh.split('').reverse().join('')
+                },
+                now:function(){
+                    return Date.now();
+                },
+                fullname:function(){
+                    return this.firstname+this.lastname
+                }
+            }
+
+        })
+        vm.firstname="aaa"
+        console.log(vm.resevers)
+    </script>
+    </body>
+</html>

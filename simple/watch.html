@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"> </script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+    <div id="app">
+        <input type="text" v-model="question">
+        <p>{{answer}}</p>
+    </div>
+    <script>
+      var vm=new Vue({
+          el:'#app',
+          data:{
+            question:'',
+            answer:"i can't get question"
+          },
+          watch:{
+              question:function(newamwer){
+                  this.answer="stop new";
+                  this.getanwer();
+              }
+          },
+          methods:{
+               getanwer:function(){
+                  if(this.question.indexOf('?')==='-1'){
+                      this.answer="no answer";
+                      return;
+                  };
+                  this.answer="thank";
+                  var vm=this;
+                  axios.get('https://yesno.wtf/api').then(function(data){
+                    console.log(data)
+                    vm.answer=data.data.answer
+                  }).catch(function(error){
+                      console.log(error)
+                  })
+               }
+          }
+      })
+    
+    </script>
+    </body>
+</html>

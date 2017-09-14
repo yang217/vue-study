@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+    <div id="app">
+           <h1 class="lal" v-bind:class="classObject">{{myname}}</h1>
+           <h2 v-bind:class="[aaa,bbb]"></h2>
+           <h3 v-bind:style="styleobj">{{aaa}}</h3>
+           <h4 :style="{display:['-webkit-box','flex']}">11111</h4>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                myname:"杨豪",
+                // classObject:{
+                //     active:"true",
+                //     pop:'true,'
+                // }
+                isactive:true,
+                error:null,
+                aaa:"up",
+                bbb:"down",
+                styleobj:{
+                    color:'green',
+                    background:'red',
+                }
+                
+            },
+            computed:{
+                classObject:function(){
+                    return {
+                         active:this.isactive&&!this.error,
+                        "text-danger":this.error&&this.error==="fatal"
+                    }
+                }
+            }
+        })
+    
+    
+    </script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+<!--.stop
+.prevent
+.capture
+.self
+.once
+修饰符
+-->
+   <div id="app">
+    <h1 @click.once="greet">数字是-{{count}}</h1>
+    <button type="" @click="warn('杨豪你好',$event)">11111111</button>
+    <input @keyup.enter.once="greet">keyup</input>
+    <input @click.crtl.left.once="greet">keyup</input>
+    <input type="text" v-model="mess">
+    <input type="checkbox" v-model="checked" id="aaa">
+    <label for="aaa">{{checked}}</label>
+    <p>{{mess}}</p>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+<label for="jack">Jack</label>
+<input type="checkbox" id="john" value="John" v-model="checkedNames">
+<label for="john">John</label>
+<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+<label for="mike">Mike</label>
+
+<br>
+<span>Checked names: {{ checkedNames }}</span>
+<label for="jack">Jack</label>
+<input type="radio" id="john" value="John" v-model="checkedName">
+<label for="john">John</label>
+<input type="radio" id="mike" value="Mike" v-model="checkedName">
+<span>{{checkedName}}+1</span>
+<select name="" id="" v-model="selected">
+    <option>yang</option>
+    <option >hao</option>
+    <option value="33">hi</option>
+</select>
+<span>{{selected}}</span>
+<input type="checkbox" v-model="lal" v-bind:value="a">
+<h1>{{lal}}</h1>
+<select v-model="selected">
+    <!-- 内联对象字面量 -->
+  <option v-bind:value="{ number: 123 }">123</option>
+</select>
+<input type="number" v-model.lazy.number="msg">
+<h2>{{msg}}</h2>
+
+<!--优先取value的值-->
+   </div>
+    <script>
+      var vm=new Vue({
+          el:'#app',
+          data:{
+              count:0,
+              mess:'',
+              checked:'',
+              checkedNames:[],
+              checkedName:'',
+              selected:'',
+              lal:'',
+              a:'yang',
+              msg:''
+          },
+          methods:{
+            greet:function(event){
+                this.count+=1;
+                alert(this.count);
+                if(event){
+                alert( event.target.tagName)   
+                }
+
+            },
+            warn:function(message,event){
+                if(event){
+                    event.preventDefault()
+                }
+                alert(message)
+            }
+          }
+      })
+      // 当选中时
+typeof vm.selected // -> 'object'
+vm.selected.number // -> 123
+  vm.lal=vm.a
+    </script>
+    </body>
+</html>

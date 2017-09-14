@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src='vue.js'></script>
+</head>
+<body>
+<div id="app">
+<parent-component >
+ 
+</parent-component>
+</div>
+<template id="parent"> 
+<div>
+  <my-child1 ref="cc1"></my-child1>
+  <my-child2 ref="cc1"></my-child2>	
+  <h1 @click="showchilddata()">this is parent</h1>
+</div>
+  </template>
+<template id="child1"><h1 @click="showparentdata">this is child1</h1></template>
+<template id="child2"><h1>this is child2</h1></template>
+<script type="text/javascript">
+  Vue.component('parent-component',{
+     template:'#parent',
+     data:function(){
+        return {msg:'父级'}
+     },
+     components:{
+     	'my-child1':{
+     		template:'#child1',
+     		data:function(){
+     			return {msg:'1号'}
+     		},
+     		methods:{
+     			showparentdata:function(){
+     				alert(this.$parent.msg)
+     			}
+     		}
+     	},
+     	'my-child2':{
+     		template:'#child2',
+     		data:function(){
+     			return {msg:'2号'}
+     		}
+     	}
+     },
+      methods:{
+   showchilddata:function(){
+     alert(this.$refs.cc1.msg)
+   	  // for(var i=0;i<this.$children.length;i++){
+   	  // 	alert(this.$children[i].msg)
+   	  //}
+
+   	    // for (var i = 0; i < this.$children.length; i++) {
+        //             alert(this.$children[i].msg)
+        //         }
+   }
+  }
+  })
+ 
+  new Vue({
+  	el:'#app'
+  })
+</script>
+</body>
+</html>

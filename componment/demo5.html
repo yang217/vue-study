@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+
+<!-- <div id="counter-event-example">
+
+<p>{{ total }}</p>
+<button-counter v-on:increment="incrementTotal"></button-counter>
+<button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+
+<script>
+Vue.component('button-counter', {
+template: '<button v-on:click="increment">{{ counter }}</button>',
+data: function () {
+
+return {
+  counter: 0
+}
+},
+methods: {
+
+increment: function () {
+  console.log(this)
+  this.counter += 1
+  this.$emit('increment')
+}
+},
+})
+new Vue({
+el: '#counter-event-example',
+data: {
+
+total: 0
+},
+methods: {
+
+incrementTotal: function () {
+  this.total += 1
+}
+}
+})
+</script> -->
+<div id="app">
+<h1>{{total}}</h1>
+ <my-com @ince="totala"></my-com>
+ <my-com @ince="totala"></my-com>
+
+
+</div>
+<script type="text/javascript">
+Vue.component('my-com',{
+	template:'<button @click="ince">{{counter}}</button>',
+ 			data:function(){
+         return {counter:0}
+ 		},
+ 		methods:{
+ 			ince:function(){
+ 				this.counter+=1;
+ 			    this.$emit('ince')
+ 			}
+ 		}
+})
+ new Vue({
+ 	el:'#app',
+ 	data:{
+ 		total:'0'
+ 	},
+ 	// components:{
+ 	// 	'my-com':{
+ 	// 		template:'<button @click="ince">{{counter}}</button>',
+ 	// 		data:function(){
+  //        return {counter:0}
+ 	// 	},
+ 	// 	methods:{
+ 	// 		ince:function(){
+ 	// 			this.counter+=1;
+ 	// 		    this.$emit('totala')
+ 	// 		}
+ 	// 	}
+ 	// 	},
+ 		
+ 	// },
+ 	methods:{
+ 		totala:function(){
+ 			alert(1)
+ 			this.total+=1
+ 		}
+ 	}
+ })
+
+
+</script>
+</body>
+</html>

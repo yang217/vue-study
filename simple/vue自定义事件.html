@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vue.js">
+            
+        </script>
+        <div id="box">
+            <tk :msg='msg'></tk>
+            <tk msg='hello world' @zidiyi="zidifn"></tk>
+        </div>
+        <script type="text/x-templent" id="tpl">
+        <input type="button" @click='alertMsg' value="弹出">
+        
+        </script>
+        <script>
+         var telmp={
+             template:'#tpl',
+             props:['msg'],
+             methods:{
+                 alertMsg:function(){
+                     alert(this.msg);
+                     this.$emit('zidiyi')
+                
+                 }
+             }
+         }
+         new Vue({
+             el:'#box',
+             data:{
+                 msg:'hello'
+             },
+             components:{
+                 'tk':telmp
+             },
+             methods:{
+                 zidifn:function(){
+                     alert('yang')
+                 }
+             }
+         })
+        </script>
+        <!--tk就代表这个组件-->
+    </head>
+    <body>
+    
+    </body>
+</html>
